@@ -243,7 +243,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-**ExamLens AI** · Founded & Built by [Abhijeet Kangane](https://github.com/yourusername)
+**ExamLens AI** · Founded & Built by [Abhijeet Kangane](https://github.com/Abhi666-max)
 
 *Turning exam history into your competitive advantage.*
 
