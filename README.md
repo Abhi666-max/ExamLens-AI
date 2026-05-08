@@ -13,8 +13,6 @@
 
 **The only AI platform that decodes exam patterns, ranks high-yield topics, and generates a personalized study plan — all from your past papers.**
 
-[🚀 Live Demo](#) · [📖 Documentation](#installation) · [🐛 Report Bug](issues) · [💡 Request Feature](issues)
-
 </div>
 
 ---
