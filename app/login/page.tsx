@@ -31,54 +31,63 @@ export default function LoginPage() {
     setError(null);
     setSuccess(null);
 
-    if (isSignUp) {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
+    try {
+      if (isSignUp) {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            data: {
+              full_name: fullName,
+            },
+            emailRedirectTo: `${location.origin}/auth/callback`,
           },
-          emailRedirectTo: `${location.origin}/auth/callback`,
-        },
-      });
+        });
 
-      if (error) {
-        setError(error.message);
+        if (error) {
+          setError(error.message);
+        } else {
+          setSuccess("Account created successfully! You can now sign in.");
+          setIsSignUp(false);
+          setPassword("");
+        }
       } else {
-        setSuccess("Account created successfully! You can now sign in.");
-        setIsSignUp(false);
-        setPassword("");
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          setError(error.message);
+        } else {
+          router.push("/dashboard");
+          router.refresh();
+        }
       }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        setError(error.message);
-        setIsLoading(false);
-      } else {
-        router.push("/dashboard");
-        router.refresh();
-      }
     }
   };
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     setError(null);
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${location.origin}/auth/callback`,
-      },
-    });
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${location.origin}/auth/callback`,
+        },
+      });
 
-    if (error) {
-      setError(error.message);
+      if (error) {
+        setError(error.message);
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
     }
   };
