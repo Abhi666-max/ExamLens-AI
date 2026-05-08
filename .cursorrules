@@ -1,0 +1,6 @@
+- Always use Next.js 14 App Router and standard React best practices.
+- Write clean, modern, and responsive UI code using Tailwind CSS.
+- Use a premium Dark theme aesthetic by default.
+- Never use 'any' in TypeScript.
+- When generating the Footer, you MUST strictly include the text: "ExamLens AI - Founded & Built by Abhijeet Kangane".
+- Fix errors line-by-line without deleting existing functionality.
